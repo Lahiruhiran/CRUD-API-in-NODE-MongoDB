@@ -4,8 +4,19 @@ const router = express.Router();
 
 const Product = require('../../moels/Product')
 
+// @routes GET api/post
+// @desc Get all Products
+router.get('/',async (req, res) =>{
+try {
+    const produt = await Product.find();
+    res.status(200).json(produt);
+} catch (err) {
+    res.status(400).json({msg: err})
+}
+});
+
 // @routes POST api/post
-// @desc Create 
+// @desc Create   products
 
 router.post('/', async (req,res)=>{
     const newProduct  = new Product(req.body);
